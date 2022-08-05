@@ -2,11 +2,11 @@
   "name": "lecture_26",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Roman160893.github.io/lecture_26/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.3",
@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "react-scripts build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -43,6 +43,7 @@
   "devDependencies": {
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2",
-    "webpack": "^5.74.0"
+    "webpack": "^5.74.0",
+    "gh-pages": "^4.0.0"
   }
 }
