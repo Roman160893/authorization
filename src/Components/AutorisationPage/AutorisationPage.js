@@ -8,13 +8,11 @@ const AutorisationPage = () => {
 
    const [valueUserEmail, setValueUserEmail] = useState('')
    const [userEmailDirty, setUserEmailDirty] = useState(false)
-   const [userEmailError, setUserEmailError] = useState('Email не може бути порожнім')
+   const [userEmailError, setUserEmailError] = useState('')
 
    const [valueUserPassword, setValueUserPassword] = useState('')
    const [userPasswordDirty, setUserPasswordDirty] = useState(false)
-   const [userPasswordError, setUserPasswordError] = useState('Password не може бути порожнім')
-
-   const [validForm, setValidForm] = useState(false)
+   const [userPasswordError, setUserPasswordError] = useState('')
 
    const [valueRemember, setValueRemember] = useState(false)
 
@@ -33,21 +31,12 @@ const AutorisationPage = () => {
    }
 
    useEffect(() => {
-      if (userEmailError || userPasswordError) {
-         setValidForm(false)
-      } else {
-         setValidForm(true)
-      }
-   }, [userEmailError, userPasswordError])
-
-   useEffect(() => {
       const remember = JSON.parse(localStorage.getItem('remember')) || null
       const user = JSON.parse(localStorage.getItem('user'))
 
       if (remember === true) {
-         setValueUserEmail(user.userEmail)
-         setValueUserPassword(user.userPassword)
-         setValidForm(true)
+         setValueUserEmail(user.userEmail) && getValueEmail()
+         setValueUserPassword(user.userPassword) && getValuePassword()
       }
    }, [])
 
@@ -70,7 +59,7 @@ const AutorisationPage = () => {
                   Remember me
                </Title>
             </CheckboxWrapper>
-            <Button disabled={!validForm} type='submit' onClick={e => dataVerification(e, valueUserEmail, valueUserPassword, valueRemember)} > SIGN IN </Button>
+            <Button type='submit' onClick={e => dataVerification(e, valueUserEmail, valueUserPassword, valueRemember)} > SIGN IN </Button>
             <WrapperQuestion>
                <Link to='/' style={{ flex: '1 1 40%', }}>
                   <Title style={{ color: 'rgb(197 201 205)', fontSize: 12, fontWeight: 700, marginBottom: 0 }} >
