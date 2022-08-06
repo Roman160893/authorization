@@ -14,7 +14,7 @@ const UserPage = () => {
                вітаємо Вас у особистому кабінеті
             </p>
          </InfoUser>
-         <Button onClick={() => document.location = '/'}> Exit </Button>
+         <Button onClick={() => document.location = '/autorisation'}> Exit </Button>
       </WrapperUserPage>
    );
 };

@@ -7,7 +7,7 @@ import './reset.scss';
 function App() {
   return (
     <Routers>
-      <Route path='/' exact component={AutorisationPage} ></Route>
+      <Route path='/autorisation' exact component={AutorisationPage} ></Route>
       <Route path='/registration' component={RegistratinPage}></Route>
       <Route path='/user' component={UserPage}></Route>
     </Routers>

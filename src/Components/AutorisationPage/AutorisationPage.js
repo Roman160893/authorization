@@ -61,7 +61,7 @@ const AutorisationPage = () => {
             </CheckboxWrapper>
             <Button type='submit' onClick={e => dataVerification(e, valueUserEmail, valueUserPassword, valueRemember)} > SIGN IN </Button>
             <WrapperQuestion>
-               <Link to='/' style={{ flex: '1 1 40%', }}>
+               <Link to='/autorisation' style={{ flex: '1 1 40%', }}>
                   <Title style={{ color: 'rgb(197 201 205)', fontSize: 12, fontWeight: 700, marginBottom: 0 }} >
                      Forgot password?
                   </Title>

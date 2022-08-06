@@ -103,7 +103,7 @@ export function addUser(e) {
    e.target.userEmail.value = '';
    e.target.userPassword.value = '';
 
-   document.location = '/'
+   document.location = '/autorisation'
 }
 
 //function valid form from local Storage

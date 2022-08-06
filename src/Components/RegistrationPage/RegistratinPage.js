@@ -90,7 +90,7 @@ const RegistratinPage = () => {
                </CheckboxWrapper>
                <Button disabled={!validForm} type='submit'> Registration </Button>
                <WrapperQuestion>
-                  <Link to='/' style={{ flex: '1 1 60%', }}>
+                  <Link to='/autorisation' style={{ flex: '1 1 60%', }}>
                      <Title style={{ color: 'rgb(197 201 205)', fontSize: 12, fontWeight: 700, marginBottom: 0, textAlign: 'right' }}>
                         Already have an account? Sign in
                      </Title>
