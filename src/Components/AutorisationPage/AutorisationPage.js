@@ -42,7 +42,7 @@ const AutorisationPage = () => {
 
    return (
       <WrapperFormAutorisation>
-         <FormAutorisation id='form' >
+         <FormAutorisation id='form' onSubmit={e => { dataVerification(e, valueUserEmail, valueUserPassword, valueRemember) }}>
             <Icon>
                <img src={padlock}></img>
             </Icon>
@@ -59,7 +59,7 @@ const AutorisationPage = () => {
                   Remember me
                </Title>
             </CheckboxWrapper>
-            <Button type='submit' onClick={e => dataVerification(e, valueUserEmail, valueUserPassword, valueRemember)} > SIGN IN </Button>
+            <Button type='submit'> SIGN IN </Button>
             <WrapperQuestion>
                <Link to='/autorisation' style={{ flex: '1 1 40%', }}>
                   <Title style={{ color: 'rgb(197 201 205)', fontSize: 12, fontWeight: 700, marginBottom: 0 }} >

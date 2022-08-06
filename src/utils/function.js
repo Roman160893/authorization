@@ -1,5 +1,7 @@
 // function validation
 
+import { Link } from "react-router-dom";
+
 export function validEmail(e, el) {
    const userEmail = document.getElementById('email');
 
@@ -84,10 +86,7 @@ export const blurHandle = (e, elDitry) => {
 // function add User in array
 
 export function addUser(e) {
-
-   e.preventDefault();
-
-   console.log(e.target);
+   e.preventDefault()
 
    const user = {
       firstName: e.target.firstName.value,
@@ -109,8 +108,7 @@ export function addUser(e) {
 //function valid form from local Storage
 
 export function dataVerification(e, email, password, remember) {
-   e.preventDefault();
-
+   e.preventDefault()
    const userEmail = (JSON.parse(localStorage.getItem('user'))) || ''
    const userPassword = (JSON.parse(localStorage.getItem('user'))) || ''
 

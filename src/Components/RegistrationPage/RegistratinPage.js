@@ -81,7 +81,7 @@ const RegistratinPage = () => {
                {(userEmailDirty && userEmailError) && <div style={{ color: 'red', background: 'white', width: "100%", borderRadius: '10px', borderBottomLeftRadius: '1px', marginBottom: '10px', padding: '10px 5px', fontSize: '12px' }}> {userEmailError} </div>}
                <Input id='email' onBlur={e => blurHandle(e, setUserEmailDirty)} placeholder='Email Address *' type='email' name='userEmail' value={valueUserEmail} onChange={getValueEmail} required />
                {(userPasswordDirty && userPasswordError) && <div style={{ color: 'red', background: 'white', width: "100%", borderRadius: '10px', borderBottomLeftRadius: '1px', marginBottom: '10px', padding: '10px 5px', fontSize: '12px' }}> {userPasswordError} </div>}
-               <Input id='password' onBlur={e => blurHandle(e, setUserPasswordDirty)} placeholder='Password *' type='password' name='userPassword' value={valueUserPassword} onChange={getValuePassword} required />
+               <Input id='password' onBlur={e => blurHandle(e, setUserPasswordDirty)} placeholder='Password *' type='password' name='userPassword' autoComplete='on' value={valueUserPassword} onChange={getValuePassword} required />
                <CheckboxWrapper>
                   <InputCheckbox type='checkbox' onChange={getValueWantReceive} checked={valueWantReceive} name='want receive'></InputCheckbox>
                   <Title style={{ margin: 0, color: '#ссс', marginLeft: 10, fontSize: 14 }}>
