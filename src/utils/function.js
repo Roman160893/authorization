@@ -1,7 +1,4 @@
 // function validation
-
-import { Link } from "react-router-dom";
-
 export function validEmail(e, el) {
    const userEmail = document.getElementById('email');
 
@@ -82,47 +79,5 @@ export const blurHandle = (e, elDitry) => {
          break
    }
 }
-
-// function add User in array
-
-export function addUser(e) {
-   e.preventDefault()
-
-   const user = {
-      firstName: e.target.firstName.value,
-      lastName: e.target.lastName.value,
-      userEmail: e.target.userEmail.value,
-      userPassword: e.target.userPassword.value,
-   }
-
-   localStorage.setItem('user', JSON.stringify(user))
-
-   e.target.firstName.value = '';
-   e.target.lastName.value = '';
-   e.target.userEmail.value = '';
-   e.target.userPassword.value = '';
-
-   document.location = '/autorisation'
-}
-
-//function valid form from local Storage
-
-export function dataVerification(e, email, password, remember) {
-   e.preventDefault()
-   const userEmail = (JSON.parse(localStorage.getItem('user'))) || ''
-   const userPassword = (JSON.parse(localStorage.getItem('user'))) || ''
-
-   if (email === '' || email !== userEmail.userEmail || password !== userPassword.userPassword) {
-      alert('Вибачте, такий email і пароль не зареєстровані. Зареєструйтесь та повторіть спробу');
-   } else {
-      const saveMe = remember
-
-      localStorage.setItem('remember', JSON.stringify(saveMe))
-      document.location = '/user'
-   }
-}
-
-
-
 
 

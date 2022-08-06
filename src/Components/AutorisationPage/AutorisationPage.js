@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { Button, CheckboxWrapper, FormAutorisation, Icon, Input, InputCheckbox, Title, WrapperFormAutorisation, WrapperQuestion } from "./StyleAutorisationPage.js"
+import { CheckboxWrapper, FormAutorisation, Icon, Input, InputCheckbox, Title, WrapperFormAutorisation, WrapperQuestion } from "./StyleAutorisationPage.js"
 import padlock from '../../img/padlock.png'
 import { Link } from 'react-router-dom';
-import { blurHandle, dataVerification, validEmail, validPassword } from '../../utils/function.js';
+import { blurHandle, validEmail, validPassword } from '../../utils/function.js';
 
 const AutorisationPage = () => {
 
-   const [valueUserEmail, setValueUserEmail] = useState('')
-   const [userEmailDirty, setUserEmailDirty] = useState(false)
-   const [userEmailError, setUserEmailError] = useState('')
+   const [valueUserEmail, setValueUserEmail] = useState('');
+   const [userEmailDirty, setUserEmailDirty] = useState(false);
+   const [userEmailError, setUserEmailError] = useState('');
 
-   const [valueUserPassword, setValueUserPassword] = useState('')
-   const [userPasswordDirty, setUserPasswordDirty] = useState(false)
-   const [userPasswordError, setUserPasswordError] = useState('')
+   const [valueUserPassword, setValueUserPassword] = useState('');
+   const [userPasswordDirty, setUserPasswordDirty] = useState(false);
+   const [userPasswordError, setUserPasswordError] = useState('');
 
-   const [valueRemember, setValueRemember] = useState(false)
+   let [valueRemember, setValueRemember] = useState(false);
+
+   const [formValid, setFormValid] = useState(false);
+   const userEmail = (JSON.parse(localStorage.getItem('email'))) || null;
+   const userPassword = (JSON.parse(localStorage.getItem('password'))) || null;
+
+   useEffect(() => {
+      if (userEmailError || userPasswordError || valueUserEmail !== userEmail || valueUserPassword !== userPassword) {
+         setFormValid(false)
+      } else {
+         setFormValid(true)
+      }
+   }, [userEmailError, userPasswordError, valueUserEmail, valueUserPassword]);
 
    function getValueEmail(e) {
       setValueUserEmail(e.target.value)
@@ -24,25 +36,26 @@ const AutorisationPage = () => {
    function getValuePassword(e) {
       setValueUserPassword(e.target.value)
       validPassword(e, setUserPasswordError)
-   }
+   };
 
    function getValueRemember(e) {
       setValueRemember(e.target.checked)
-   }
+      localStorage.setItem('remember', JSON.stringify(e.target.checked))
+   };
 
    useEffect(() => {
       const remember = JSON.parse(localStorage.getItem('remember')) || null
-      const user = JSON.parse(localStorage.getItem('user'))
 
       if (remember === true) {
-         setValueUserEmail(user.userEmail) && getValueEmail()
-         setValueUserPassword(user.userPassword) && getValuePassword()
+         setValueUserEmail(userEmail) && getValueEmail()
+         setValueUserPassword(userPassword) && getValuePassword()
+         setValueRemember(remember)
       }
-   }, [])
+   }, []);
 
    return (
       <WrapperFormAutorisation>
-         <FormAutorisation id='form' onSubmit={e => { dataVerification(e, valueUserEmail, valueUserPassword, valueRemember) }}>
+         <FormAutorisation id='form'>
             <Icon>
                <img src={padlock}></img>
             </Icon>
@@ -59,9 +72,11 @@ const AutorisationPage = () => {
                   Remember me
                </Title>
             </CheckboxWrapper>
-            <Button type='submit'> SIGN IN </Button>
+
+            <Link to={formValid ? '/user' : '/authorization'} style={{ width: '100%', background: '#90caf9', padding: '7px 0px', borderRadius: '5px', fontFamily: `'Roboto', sans-serif`, textAlign: 'center' }}> Sing in</Link>
+
             <WrapperQuestion>
-               <Link to='/autorisation' style={{ flex: '1 1 40%', }}>
+               <Link to='/authorization' style={{ flex: '1 1 40%', }}>
                   <Title style={{ color: 'rgb(197 201 205)', fontSize: 12, fontWeight: 700, marginBottom: 0 }} >
                      Forgot password?
                   </Title>

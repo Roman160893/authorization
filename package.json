@@ -2,7 +2,7 @@
   "name": "lecture_26",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Roman160893.github.io/autorisation/",
+  "homepage": "https://roman160893.github.io/authorization",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",

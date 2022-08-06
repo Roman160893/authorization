@@ -87,9 +87,7 @@ export const Button = styled.button`
    font-weight: 600;
    font-size: 15px;
    cursor: pointer;
-   &:disabled{
-      cursor:not-allowed
-`
+   `
 
 export const WrapperQuestion = styled.div`
    display: flex;

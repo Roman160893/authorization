@@ -1,67 +1,71 @@
 import React, { useEffect, useState } from 'react';
-import { Button, CheckboxWrapper, FormAutorisation, Icon, Input, InputCheckbox, Title, WrapperFormAutorisation, WrapperQuestion, WrapperUserName } from "./StyleRegistratinPage"
+import { CheckboxWrapper, FormAutorisation, Icon, Input, InputCheckbox, Title, WrapperFormAutorisation, WrapperQuestion, WrapperUserName } from "./StyleRegistratinPage"
 import padlock from '../../img/padlock.png'
 import { Link } from 'react-router-dom';
-import { addUser, blurHandle, validEmail, validFirstName, validLastName, validPassword } from '../../utils/function.js';
+import { blurHandle, validEmail, validFirstName, validLastName, validPassword } from '../../utils/function.js';
 
 const RegistratinPage = () => {
 
-   const [valueUserEmail, setValueUserEmail] = useState('')
-   const [userEmailDirty, setUserEmailDirty] = useState(false)
-   const [userEmailError, setUserEmailError] = useState('Email не може бути порожнім')
+   const [valueUserEmail, setValueUserEmail] = useState('');
+   const [userEmailDirty, setUserEmailDirty] = useState(false);
+   const [userEmailError, setUserEmailError] = useState('Email не може бути порожнім');
 
-   const [valueUserPassword, setValueUserPassword] = useState('')
-   const [userPasswordDirty, setUserPasswordDirty] = useState(false)
-   const [userPasswordError, setUserPasswordError] = useState('Password не може бути порожнім')
+   const [valueUserPassword, setValueUserPassword] = useState('');
+   const [userPasswordDirty, setUserPasswordDirty] = useState(false);
+   const [userPasswordError, setUserPasswordError] = useState('Password не може бути порожнім');
 
-   const [valueUserFirsName, setValueUserFirsName] = useState('')
-   const [userFirstNameDirty, setUserFirstNameDirty] = useState(false)
-   const [userFirstNameError, setUserFirstNameError] = useState(`Ім'я повинно містити не менше трьох символів`)
+   const [valueUserFirsName, setValueUserFirsName] = useState('');
+   const [userFirstNameDirty, setUserFirstNameDirty] = useState(false);
+   const [userFirstNameError, setUserFirstNameError] = useState(`Ім'я повинно містити не менше трьох символів`);
 
-   const [valueUserLastName, setValueUserLastName] = useState('')
-   const [userLastNameDirty, setUserLastNameDirty] = useState(false)
-   const [userLastNameError, setUserLastNameError] = useState(`Прізвище повинно містити не менше трьох символів`)
+   const [valueUserLastName, setValueUserLastName] = useState('');
+   const [userLastNameDirty, setUserLastNameDirty] = useState(false);
+   const [userLastNameError, setUserLastNameError] = useState(`Прізвище повинно містити не менше трьох символів`);
 
-   const [validForm, setValidForm] = useState(false)
+   const [valueWantReceive, setValueWantReceive] = useState(true);
 
-   const [valueWantReceive, setValueWantReceive] = useState(true)
+   const [formValid, setFormValid] = useState(false);
+
+   useEffect(() => {
+      if (userEmailError || userPasswordError || userFirstNameError || userLastNameError) {
+         setFormValid(false)
+      } else {
+         setFormValid(true)
+      }
+   }, [userEmailError, userPasswordError, userFirstNameError, userLastNameError]);
 
    function getValueFirsName(e) {
       setValueUserFirsName(e.target.value)
       validFirstName(e, setUserFirstNameError)
-   }
+      localStorage.setItem('firstName', JSON.stringify(e.target.value))
+   };
 
    function getValueLastName(e) {
       setValueUserLastName(e.target.value)
       validLastName(e, setUserLastNameError)
-   }
+      localStorage.setItem('LastName', JSON.stringify(e.target.value))
+   };
 
    function getValueEmail(e) {
       setValueUserEmail(e.target.value)
       validEmail(e, setUserEmailError)
-   }
+      localStorage.setItem('email', JSON.stringify(e.target.value))
+   };
 
    function getValuePassword(e) {
       setValueUserPassword(e.target.value)
       validPassword(e, setUserPasswordError)
-   }
+      localStorage.setItem('password', JSON.stringify(e.target.value))
+   };
 
    function getValueWantReceive(e) {
       setValueWantReceive(e.target.checked)
-   }
-
-   useEffect(() => {
-      if (userEmailError || userPasswordError || userFirstNameError || userLastNameError) {
-         setValidForm(false)
-      } else {
-         setValidForm(true)
-      }
-   }, [userEmailError, userPasswordError, userFirstNameError, userLastNameError])
+   };
 
    return (
       <div>
          <WrapperFormAutorisation>
-            <FormAutorisation id='form' action='#' onSubmit={addUser} >
+            <FormAutorisation id='form' action='#'>
                <Icon>
                   <img src={padlock}></img>
                </Icon>
@@ -88,9 +92,9 @@ const RegistratinPage = () => {
                      I want to receive inspiration, marketing promotions and updates via email.
                   </Title>
                </CheckboxWrapper>
-               <Button disabled={!validForm} type='submit'> Registration </Button>
+               <Link to={formValid ? "/authorization" : "/registration"} type='submit' style={{ width: '100%', background: '#90caf9', padding: '7px 0px', borderRadius: '5px', fontFamily: `'Roboto', sans-serif`, textAlign: 'center' }}>Registration</Link>
                <WrapperQuestion>
-                  <Link to='/autorisation' style={{ flex: '1 1 60%', }}>
+                  <Link to='/authorization' style={{ flex: '1 1 60%' }}>
                      <Title style={{ color: 'rgb(197 201 205)', fontSize: 12, fontWeight: 700, marginBottom: 0, textAlign: 'right' }}>
                         Already have an account? Sign in
                      </Title>
