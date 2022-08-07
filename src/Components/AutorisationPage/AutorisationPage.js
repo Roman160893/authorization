@@ -3,7 +3,6 @@ import { CheckboxWrapper, FormAutorisation, Icon, Input, InputCheckbox, Title, W
 import padlock from '../../img/padlock.png'
 import { Link } from 'react-router-dom';
 import { blurHandle, validEmail, validPassword } from '../../utils/function.js';
-import { remember, userEmail, userPassword } from '../../utils/const.js';
 
 const AutorisationPage = () => {
 
@@ -19,10 +18,15 @@ const AutorisationPage = () => {
 
    const [formValid, setFormValid] = useState(false);
 
+   const userEmail = (JSON.parse(localStorage.getItem('email'))) || '';
+   const userPassword = (JSON.parse(localStorage.getItem('password'))) || '';
 
    useEffect(() => {
+
+
       if (userEmailError || userPasswordError || valueUserEmail !== userEmail || valueUserPassword !== userPassword) {
          setFormValid(false)
+         console.log(userEmail, userPassword);
       } else {
          setFormValid(true)
       }
@@ -44,6 +48,8 @@ const AutorisationPage = () => {
    };
 
    useEffect(() => {
+      const remember = JSON.parse(localStorage.getItem('remember')) || null;
+
       if (remember === true) {
          setValueUserEmail(userEmail) && getValueEmail()
          setValueUserPassword(userPassword) && getValuePassword()
@@ -71,7 +77,7 @@ const AutorisationPage = () => {
                </Title>
             </CheckboxWrapper>
 
-            <Link to={formValid ? '/user' : '/authorization'} style={{ width: '100%', background: '#90caf9', padding: '7px 0px', borderRadius: '5px', fontFamily: `'Roboto', sans-serif`, textAlign: 'center' }}> Sing in</Link>
+            <Link to={formValid === true ? '/user' : '/authorization'} style={{ width: '100%', background: '#90caf9', padding: '7px 0px', borderRadius: '5px', fontFamily: `'Roboto', sans-serif`, textAlign: 'center' }}> Sing in</Link>
 
             <WrapperQuestion>
                <Link to='/authorization' style={{ flex: '1 1 40%', }}>
