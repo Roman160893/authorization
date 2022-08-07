@@ -36,7 +36,7 @@ export function validFirstName(e, el) {
 
    const firtName = e.target.value;
 
-   if (firtName !== ' ' && firtName.length < 3) {
+   if (firtName.length < 3) {
       el(`Ім'я повинно містити не менше трьох символів`)
       userFirstName.style.borderColor = 'red';
       userFirstName.style.boxShadow = '0px 0px 5px 3px red';
@@ -52,7 +52,7 @@ export function validLastName(e, el) {
 
    const lastName = e.target.value;
 
-   if (lastName !== ' ' && lastName.length < 3) {
+   if (lastName.length < 3) {
       el('Прізвище повинно містити не менше трьох символів')
       userLastName.style.borderColor = 'red';
       userLastName.style.boxShadow = '0px 0px 5px 3px red';

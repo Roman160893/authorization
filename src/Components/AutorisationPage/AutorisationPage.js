@@ -3,6 +3,7 @@ import { CheckboxWrapper, FormAutorisation, Icon, Input, InputCheckbox, Title, W
 import padlock from '../../img/padlock.png'
 import { Link } from 'react-router-dom';
 import { blurHandle, validEmail, validPassword } from '../../utils/function.js';
+import { remember, userEmail, userPassword } from '../../utils/const.js';
 
 const AutorisationPage = () => {
 
@@ -17,8 +18,7 @@ const AutorisationPage = () => {
    let [valueRemember, setValueRemember] = useState(false);
 
    const [formValid, setFormValid] = useState(false);
-   const userEmail = (JSON.parse(localStorage.getItem('email'))) || null;
-   const userPassword = (JSON.parse(localStorage.getItem('password'))) || null;
+
 
    useEffect(() => {
       if (userEmailError || userPasswordError || valueUserEmail !== userEmail || valueUserPassword !== userPassword) {
@@ -44,8 +44,6 @@ const AutorisationPage = () => {
    };
 
    useEffect(() => {
-      const remember = JSON.parse(localStorage.getItem('remember')) || null
-
       if (remember === true) {
          setValueUserEmail(userEmail) && getValueEmail()
          setValueUserPassword(userPassword) && getValuePassword()
