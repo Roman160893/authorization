@@ -26,7 +26,6 @@ const AutorisationPage = () => {
 
       if (userEmailError || userPasswordError || valueUserEmail !== userEmail || valueUserPassword !== userPassword) {
          setFormValid(false)
-         console.log(userEmail, userPassword);
       } else {
          setFormValid(true)
       }
