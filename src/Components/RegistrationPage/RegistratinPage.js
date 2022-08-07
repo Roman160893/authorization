@@ -70,7 +70,7 @@ const RegistratinPage = () => {
                   <img src={padlock}></img>
                </Icon>
                <Title>
-                  Sign In
+                  Sign Up
                </Title>
                <WrapperUserName>
                   <div style={{ marginRight: '10px', position: 'relative' }}>
@@ -92,7 +92,7 @@ const RegistratinPage = () => {
                      I want to receive inspiration, marketing promotions and updates via email.
                   </Title>
                </CheckboxWrapper>
-               <Link to={formValid ? "/authorization" : "/registration"} type='submit' style={{ width: '100%', background: '#90caf9', padding: '7px 0px', borderRadius: '5px', fontFamily: `'Roboto', sans-serif`, textAlign: 'center' }}>Registration</Link>
+               <Link to={formValid ? "/authorization" : "/registration"} type='submit' style={{ width: '100%', background: '#90caf9', padding: '7px 0px', borderRadius: '5px', fontFamily: `'Roboto', sans-serif`, textAlign: 'center' }}>Sing up</Link>
                <WrapperQuestion>
                   <Link to='/authorization' style={{ flex: '1 1 60%' }}>
                      <Title style={{ color: 'rgb(197 201 205)', fontSize: 12, fontWeight: 700, marginBottom: 0, textAlign: 'right' }}>
